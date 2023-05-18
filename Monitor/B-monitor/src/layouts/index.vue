@@ -8,10 +8,8 @@
         </el-card>
       </el-header>
       <el-container style="height:calc(100vh - 60px)">
-        <el-aside width="200px">
-          <el-card style="--el-card-padding:0px" class="h-full">
-            <ASIDE class="h-full"></ASIDE>
-          </el-card>
+        <el-aside width="200px" class="p-3">
+          <ASIDE class="h-full"></ASIDE>
         </el-aside>
         <el-main>
           <router-view></router-view>

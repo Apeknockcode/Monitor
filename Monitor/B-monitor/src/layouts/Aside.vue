@@ -1,54 +1,63 @@
 <template>
-    <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-        <el-radio-button :label="false">expand</el-radio-button>
-        <el-radio-button :label="true">collapse</el-radio-button>
-    </el-radio-group> -->
-    <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
-        @close="handleClose">
-        <el-sub-menu index="1">
-            <template #title>
-                <el-icon>
-                    <location />
-                </el-icon>
-                <span>Navigator One</span>
-            </template>
-            <el-menu-item-group>
-                <template #title><span>Group One</span></template>
-                <el-menu-item index="1-1">item one</el-menu-item>
-                <el-menu-item index="1-2">item two</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group Two">
-                <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-        </el-sub-menu>
-    </el-menu>
+    <el-card class="w-full h-10 cursor-pointer mb-2 flex items-center justify-start px-10 py-2"
+        :class='{ "shadow": item.path == currentUrl }' style="--el-card-padding:0px" :body-style="cardBody"
+        v-for="item in  routerArr " :key="item.path" shadow='hover' @click="handlePages(item)">
+        <span v-html="item.icon"></span>
+        <span class="ml-1">{{ item.name }}</span>
+    </el-card>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import {
-    Document,
-    Menu as IconMenu,
-    Location,
-    Setting,
-} from '@element-plus/icons-vue'
+import { CSSProperties, ref, onMounted } from 'vue';
+import { useRouter } from "vue-router";
+import { useBrowserLocation } from '@vueuse/core'
+const cardBody: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+}
+interface routerType {
+    name: string,
+    icon: string,
+    path: string,
+}
 
-const isCollapse = ref(false)
-const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
+const router = useRouter()
+const routerArr: routerType[] = [
+    {
+        name: '数据统计',
+        icon: ` <svg viewBox="0 0 1024 1024" class="w-4" xmlns="http://www.w3.org/2000/svg" data-v-ea893728="">
+            <path fill="currentColor" d="M416 896V128h192v768H416zm-288 0V448h192v448H128zm576 0V320h192v576H704z"></path>
+        </svg>`,
+        path: '/statistics'
+    },
+    {
+        name: '埋点',
+        icon: ` <svg viewBox="0 0 1024 1024" class="w-4" xmlns="http://www.w3.org/2000/svg" data-v-ea893728="">
+            <path fill="currentColor"
+                d="m64 448 832-320-128 704-446.08-243.328L832 192 242.816 545.472 64 448zm256 512V657.024L512 768 320 960z">
+            </path>
+        </svg>`,
+        path: '/buryPoint'
+    }
+]
+
+const location = useBrowserLocation()
+const currentUrl = ref('')
+onMounted(() => {
+    currentUrl.value = location.value.state.current
+})
+
+const handlePages = ({ path }: routerType) => {
+    // 设置url 
+    currentUrl.value = path
+
+    router.push({
+        path: path
+    });
 }
-const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-}
+
 </script>
 
-<style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-}
 
-.el-menu-vertical-demo {
-    height: calc(100vh -60px);
-}
-</style>
+<style lang="scss" scoped></style>

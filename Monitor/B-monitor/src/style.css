@@ -6,10 +6,11 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    
 }
 
 :root {
     width: 100vw;
     height: 100vh;
-    background: --el-fill-color-blank;
+    background: #f6f6f6;
 }

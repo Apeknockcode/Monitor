@@ -5,40 +5,40 @@ const router = createRouter({
   // history: createWebHistory(), // history 模式
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: defineAsyncComponent(() => import(`../views/home.vue`)),
+      path: '/statistics',
+      name: 'statistics',
+      component: defineAsyncComponent(() => import(`../views/statistics.vue`)),
       meta: {
-        title: '首页',
+        title: '数据统计',
       },
     },
     {
-      path: '/list',
-      name: 'list',
-      component: defineAsyncComponent(() => import(`../views/list.vue`)),
+      path: '/buryPoint',
+      name: 'buryPoint',
+      component: defineAsyncComponent(() => import(`../views/buryPoint.vue`)),
       meta: {
-        title: '列表页',
+        title: '埋点',
       },
     },
     {
       path: '/*',
-      redirect: '/',
+      redirect: '/statistics',
     },
   ],
 })
 
 // 全局路由守卫
-router.beforeEach((to, from, next) => {
-  console.log(to, from)
+router.beforeEach((to,from,next) => {
+  console.log(from)
   if (to.meta.title) {
     document.title = `${to.meta.title}`
   }
   next()
 })
 
-router.afterEach((to, from) => {
-  console.log(to, from)
-  console.log('afterEach')
-})
+// router.afterEach((to, from) => {
+//   console.info(to, from)
+//   console.log('afterEach')
+// })
 
 export default router
