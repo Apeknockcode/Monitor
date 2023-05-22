@@ -1,6 +1,6 @@
 <template>
     <el-card class="w-full h-10 cursor-pointer mb-2 flex items-center justify-start px-10 py-2"
-        :class='{ "text-base shadow-lg shadow-cyan-500/50 focus:outline-none": item.path == currentUrl }'
+        :class='{ "text-base shadow-lg shadow-cyan-500/50 focus:outline-none": currentUrl.startsWith(item.path) }'
         style="--el-card-padding:0px" :body-style="cardBody" v-for="item in  routerArr " :key="item.path" shadow='hover'
         @click="handlePages(item)">
         <span v-html="item.icon"></span>
