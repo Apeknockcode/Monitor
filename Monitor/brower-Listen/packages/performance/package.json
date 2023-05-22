@@ -1,0 +1,21 @@
+{
+  "name": "@brolisten/performance",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "module": "dist/index.esm.js",
+  "publishConfig": {
+    "main": "dist/index.js"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@brolisten/common": "workspace:*",
+    "@brolisten/types": "workspace:*",
+    "@brolisten/utils": "workspace:*",
+    "web-vitals": "^3.1.0"
+  }
+}

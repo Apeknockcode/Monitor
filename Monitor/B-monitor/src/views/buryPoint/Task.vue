@@ -19,6 +19,7 @@ const router = useRouter()
 const handleGoBlack = () => {
     router.go(-1)
 }
+
 </script>
 
 <style scoped></style>
