@@ -26,13 +26,16 @@
     "lodash": "^4.17.21",
     "node-sass": "^8.0.0",
     "pinia": "^2.0.36",
+    "prismjs": "^1.29.0",
     "sass": "^1.62.1",
     "unplugin-auto-import": "^0.16.0",
     "unplugin-vue-components": "^0.24.1",
     "vue": "^3.2.47",
+    "vue-prism-editor": "2.0.0-alpha.2",
     "vue-router": "^4.2.0"
   },
   "devDependencies": {
+    "@types/prismjs": "^1.26.0",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
     "@vitejs/plugin-vue": "^4.1.0",
