@@ -38,7 +38,7 @@ export function handleScreen(transportData: any, recordScreentime: number): void
     checkoutEveryNms: 1000 * recordScreentime,
   });
 }
-// 压缩
+// 压缩工具
 export function zip(data: any): string {
   if (!data) return data;
   // 判断数据是否需要转为JSON

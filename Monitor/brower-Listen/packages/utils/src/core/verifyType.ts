@@ -45,6 +45,7 @@ export function isEmpty(wat: any): boolean {
   );
 }
 
+// isExistProperty 是一个布尔函数，当给定的对象有给定的属性时，返回true。 其
 export function isExistProperty(obj: any, key: any): boolean {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }

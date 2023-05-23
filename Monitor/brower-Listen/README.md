@@ -1,14 +1,11 @@
 <div align="center">
-    <a href="#" target="_blank">
-    <img src="https://i.postimg.cc/bN7f4YY3/logo.png" alt="websee-logo" height="80">
-    </a>
     <p>前端监控SDK，可用来收集并上报：代码报错、性能数据、页面录屏、用户行为、白屏检测等个性化指标数据</p>
     <div align="left">
-    <p>亮点1：支持多种错误还原方式：定位源码、播放录屏、记录用户行为</p>
-    <p>亮点2：支持项目的白屏检测，兼容有骨架屏、无骨架屏这两种情况</p>
-    <p>亮点3：支持错误上报去重，错误生成唯一的id，重复的代码错误只上报一次</p>
-    <p>亮点4：支持多种上报方式，默认使用web beacon，也支持图片打点、http 上报</p>
-    <div
+        <p>亮点1：支持多种错误还原方式：定位源码、播放录屏、记录用户行为</p>
+        <p>亮点2：支持项目的白屏检测，兼容有骨架屏、无骨架屏这两种情况</p>
+        <p>亮点3：支持错误上报去重，错误生成唯一的id，重复的代码错误只上报一次</p>
+        <p>亮点4：支持多种上报方式，默认使用web beacon，也支持图片打点、http 上报</p>
+    </div>
 </div>
 
 ## 功能
@@ -27,23 +24,23 @@
 
 ```javascript
 // 安装核心模块
-$ npm i @websee/core
+$ npm i @brolisten/core
 
 // 安装性能检测插件
-$ npm i @websee/performance
+$ npm i @brolisten/performance
 
 // 安装页面录屏插件
-$ npm i @websee/recordscreen
+$ npm i @brolisten/recordscreen
 ```
 
 ## Vue2 安装说明
 
 ```javascript
-import webSee from '@websee/core';
-import performance from '@websee/performance';
-import recordscreen from '@websee/recordscreen';
+import brolisten from '@brolisten/core';
+import performance from '@brolisten/performance';
+import recordscreen from '@brolisten/recordscreen';
 
-Vue.use(webSee, {
+Vue.use(brolisten, {
   dsn: 'http://text.com/reportData', // 上报的地址
   apikey: 'project1', // 项目唯一的id
   userId: '89757', // 用户id
@@ -63,50 +60,50 @@ Vue.use(webSee, {
 });
 
 // 注册性能检测插件
-webSee.use(performance);
+brolisten.use(performance);
 // 注册页面录屏插件，设置单次录屏时长为20s，默认是10s
-webSee.use(recordscreen, { recordScreentime: 20 });
+brolisten.use(recordscreen, { recordScreentime: 20 });
 ```
 
 ## Vue3 安装说明
 
 ```javascript
-import webSee from '@websee/core';
-import performance from '@websee/performance';
-import recordscreen from '@websee/recordscreen';
+import brolisten from '@brolisten/core';
+import performance from '@brolisten/performance';
+import recordscreen from '@brolisten/recordscreen';
 
 const app = createApp(App);
-app.use(webSee, {
+app.use(brolisten, {
   dsn: 'http://text.com/reportData',
   apikey: 'project1',
   userId: '89757',
 });
 
-webSee.use(performance);
-webSee.use(recordscreen);
+brolisten.use(performance);
+brolisten.use(recordscreen);
 ```
 
 ## React 安装说明
 
 ```javascript
-import webSee from '@websee/core';
-import performance from '@websee/performance';
-import recordscreen from '@websee/recordscreen';
+import brolisten from '@brolisten/core';
+import performance from '@brolisten/performance';
+import recordscreen from '@brolisten/recordscreen';
 
-webSee.init({
+brolisten.init({
   dsn: 'http://text.com/reportData',
   apikey: 'project1',
   userId: '89757',
 });
 
-webSee.use(performance);
-webSee.use(recordscreen);
+brolisten.use(performance);
+brolisten.use(recordscreen);
 ```
 
 如果在 React 项目中使用了 ErrorBoundary，要在 componentDidCatch 中将报错上报给服务器
 
 ```javascript
-import webSee from '@websee/core';
+import brolisten from '@brolisten/core';
 import React from 'react';
 
 class ErrorBoundary extends React.Component {
@@ -119,7 +116,7 @@ class ErrorBoundary extends React.Component {
   }
   componentDidCatch(error, errorInfo) {
     // 在componentDidCatch中将报错上报给服务器
-    webSee.errorBoundary(err);
+    brolisten.errorBoundary(err);
   }
   render() {
     if (this.state.hasError) {
@@ -166,7 +163,7 @@ class ErrorBoundary extends React.Component {
 |      `silentHistory`       | `boolean` | `true`  | 默认会监控 popstate、pushState、replaceState，为 false 时，将不再监控 |
 |     `silentHashchange`     | `boolean` | `true`  | 默认会监控 hashchange，为 false 时，将不再监控                        |
 
-## @websee/recordscreen 录屏插件的配置项
+## @brolisten/recordscreen 录屏插件的配置项
 
 |          Name          | Type     | Default                                                       | Description                                                                                                               |
 | :--------------------: | -------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -218,9 +215,9 @@ handleHttpStatus
 
 ```javascript
 // 根据接口返回的response判断请求是否正确
-import webSee from 'webSee';
+import brolisten from 'brolisten';
 
-Vue.use(webSee, {
+Vue.use(brolisten, {
   dsn: 'http://test.com/reportData',
   apikey: 'abcd',
   // handleHttpStatus 返回true表示接口正常，反之表示接口报错
@@ -278,9 +275,9 @@ async beforePost(data) {
 ## 手动上报错误示例
 
 ```javascript
-import webSee from 'web-see';
+import brolisten from 'web-see';
 
-webSee.log({
+brolisten.log({
   type: 'custom',
   message: '手动报错信息',
   error: new Error('报错'),

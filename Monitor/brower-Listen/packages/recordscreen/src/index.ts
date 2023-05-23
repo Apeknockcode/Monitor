@@ -31,6 +31,7 @@ export default class RecordScreen extends BasePlugin {
     options.recordScreenTypeList = this.recordScreenTypeList;
     // 添加初始的recordScreenId
     _support.recordScreenId = generateUUID();
+    // 返回记录界面的数据
     handleScreen(transportData, this.recordScreentime);
   }
   transform() {}

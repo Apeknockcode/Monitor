@@ -19,12 +19,12 @@ export function htmlElementAsString(target: HTMLElement): string {
 }
 /**
  * 将地址字符串转换成对象，
- * 输入：'https://github.com/xy-sea/browser-listen?token=123&name=11'
+ * 输入：'https://XXXXX.com/XYXYXY/browser-listen?token=123&name=11'
  * 输出：{
- *  "host": "github.com",
- *  "path": "/xy-sea/browser-listen",
+ *  "host": "XXXXX.com",
+ *  "path": "XYXYXY/browser-listen",
  *  "protocol": "https",
- *  "relative": "/xy-sea/browser-listen?token=123&name=11"
+ *  "relative": "/XYXYXY/browser-listen?token=123&name=11"
  * }
  */
 export function parseUrlToObj(url: string) {
@@ -44,7 +44,7 @@ export function parseUrlToObj(url: string) {
     relative: match[5] + query + fragment,
   };
 }
-
+// 给全局添加已设置的标识，防止重复设置
 export function setSilentFlag({
   silentXhr = true,
   silentFetch = true,
@@ -70,6 +70,7 @@ export function getErrorUid(input: string): string {
   return window.btoa(encodeURIComponent(input));
 }
 
+// 判断是不是第一次报错，如果是第一次报错就上报。否则返回false
 export function hashMapExist(hash: string): boolean {
   const exist = _support.errorMap.has(hash);
   if (!exist) {

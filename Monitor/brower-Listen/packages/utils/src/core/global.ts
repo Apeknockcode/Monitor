@@ -32,6 +32,8 @@ _support.errorMap = new Map();
 
 _support.replaceFlag = _support.replaceFlag || {};
 const replaceFlag = _support.replaceFlag;
+
+// 获取用户设置的参数
 export function setFlag(replaceType: string, isSet: boolean) {
   if (replaceFlag[replaceType]) return;
   replaceFlag[replaceType] = isSet;
@@ -44,6 +46,7 @@ export function getGlobalSupport() {
   _global.__webSee__ = _global.__webSee__ || ({} as WebSee);
   return _global.__webSee__;
 }
+// 检查是否支持页面是否支持history
 export function supportsHistory(): boolean {
   const chrome = _global.chrome;
   const isChromePackagedApp = chrome && chrome.app && chrome.app.runtime;

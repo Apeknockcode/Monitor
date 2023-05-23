@@ -90,6 +90,7 @@ export function validateOption(target: any, targetName: string, expectType: stri
   );
 }
 
+// 生成 UUID 
 export function generateUUID(): string {
   let d = new Date().getTime();
   const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -99,6 +100,8 @@ export function generateUUID(): string {
   });
   return uuid;
 }
+
+// unknownToString 将任何不受某个特定对象隐藏的对象属性的值转换为字符串
 export function unknownToString(target: unknown): string {
   if (variableTypeDetection.isString(target)) {
     return target as string;
@@ -109,6 +112,7 @@ export function unknownToString(target: unknown): string {
   return JSON.stringify(target);
 }
 
+// interceptStr 将字符串内容添加加水印到标识符或对象属性中，并且在被替换的字符串
 export function interceptStr(str: string, interceptLength: number): string {
   if (variableTypeDetection.isString(str)) {
     return (
